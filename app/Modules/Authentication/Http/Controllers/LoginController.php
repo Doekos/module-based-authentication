@@ -20,12 +20,11 @@ class LoginController
             'email' => 'required|email',
             'password' => 'required',
         ]);
-//dd(!auth()->attempt($data));
+
         // Attempt to authenticate the user
         if (!auth()->attempt($data)) {
             return back()->with('error', 'Invalid credentials.');
         }
-
 
         return redirect()->route('core.dashboard')->with('success', 'You have been logged in successfully.');
     }

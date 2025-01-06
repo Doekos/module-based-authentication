@@ -13,8 +13,8 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        commands: __DIR__.'/../routes/console.php',
+        web: __DIR__ . '/../routes/web.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
@@ -22,23 +22,20 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectUsersTo('/');
 
         $middleware->validateCsrfTokens(except: [
-            '/logout'
+            '/logout',
         ]);
 
         $middleware->throttleApi();
 
         $middleware->priority([
-            $middleware->priority([
-                StartSession::class,
-                ShareErrorsFromSession::class,
-                Authenticate::class,
-                ThrottleRequestsWithRedis::class,
-                AuthenticateSession::class,
-                SubstituteBindings::class,
-                Authorize::class,
-            ]),
+            StartSession::class,
+            ShareErrorsFromSession::class,
+            Authenticate::class,
+            ThrottleRequestsWithRedis::class,
+            AuthenticateSession::class,
+            SubstituteBindings::class,
+            Authorize::class,
         ]);
-
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
