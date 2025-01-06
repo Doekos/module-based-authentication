@@ -3,7 +3,7 @@
 use App\Modules\Core\Http\Controllers\DashboardController;
 
 Route::prefix('core')
-    ->middleware('auth')
+    ->middleware(['auth'])
     ->group(function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('core.dashboard');
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('core.dashboard');
 });
